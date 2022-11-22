@@ -28,7 +28,7 @@
 
       <a href="https://helpcreaciones.com/" target="_blank" class="flex lg:flex-col lg:items-end items-center justify-center  mx-auto lg:mx-0 gap-3 lg:gap-0">
           <p class="w-max font-light lg:mb-1">A development of:</p>
-          <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669131998/Advisors/group-logo-01_emyrow.svg" alt="" class="h-4 opacity-80">
+          <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669131998/Advisors/group-logo-01_emyrow.svg" alt="" class="h-3 opacity-80">
       </a>
     </div>
   </div>
