@@ -1,13 +1,13 @@
 <template>
-    <div class="max-w-7xl grid grid-cols-2 m-auto w-full h-full p-5">
-        <div class="text-text flex flex-col justify-center items-start ">
-            <p class="text-7xl font-extralight">All the assistance you may need</p>
-            <p class="text-9xl text-left font-bold">In Malta</p>
-            <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669142761/Advisors/mancha-01_lfdicq.svg" alt="mancha" class=" h-10 mr-auto leading-none -mt-1 animate-bounce ">
-            <p class="mt-5 leading-5 text-lg font-light">At LECO7 advisors, we provide you with all the advice you need <br> to achieve every goal you set for your stay in Malta.</p>
-            <button class="bg-primario text-white rounded-full text-lg font-light px-8 mt-5 py-3">Get started</button>
+    <div class="max-w-7xl grid grid-cols-1 lg:grid-cols-2 m-auto w-full h-full p-5">
+        <div class="text-text flex flex-col justify-center items-start lg:order-1 order-2 mt-5 lg:mt-0">
+            <p class="lg:text-7xl text-3xl text-center lg:text-left font-extralight">All the assistance you may need</p>
+            <p class="lg:text-9xl text-7xl lg:text-left text-center mx-auto lg:mx-0 font-bold">In Malta</p>
+            <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669142761/Advisors/mancha-01_lfdicq.svg" alt="mancha" class=" h-10 mr-auto leading-none -mt-1">
+            <p class="mt-5 leading-5 text-lg font-light text-center lg:text-left">At LECO7 advisors, we provide you with all the advice you need <br class="hidden lg:block"> to achieve every goal you set for your stay in Malta.</p>
+            <button class="bg-primario text-white rounded-full text-lg font-light px-10 mt-5 py-3 mx-auto lg:mx-0">Get started</button>
         </div>
-        <div class="flex justify-center items-center">
+        <div class="flex justify-center items-center lg:order-2 order-1">
             <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669144672/Advisors/group-logo-01-01_1_1_1_xo2a1l.png" alt="phone" class="hh">
         </div>
     </div>
@@ -20,5 +20,12 @@ export default {
 <style scoped>
     .hh{
         height: 580px;
+    }
+
+    @media (max-width: 600px) {
+        .hh{
+            height: 100%;
+            max-height: 380px;
+        }
     }
 </style>
