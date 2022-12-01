@@ -24,9 +24,9 @@
         <a href="https://www.google.com" target="_blank"><i class="fi fi-brands-instagram flex justify-center items-center text-2xl"></i></a>
     </div>
 
-      <a href="https://helpcreaciones.com/" target="_blank" class="flex leading-none text-center mx-auto lg:mx-0"> © All rights reserved LECO7 GROUP {{this.date}}</a>
+      <a href="#" target="_blank" class="flex leading-none text-center mx-auto lg:mx-0"> © All rights reserved LECO7 GROUP {{this.date}}</a>
 
-      <a href="https://helpcreaciones.com/" target="_blank" class="flex lg:flex-col lg:items-end items-center justify-center  mx-auto lg:mx-0 gap-3 lg:gap-0">
+      <a href="#" target="_blank" class="flex lg:flex-col lg:items-end items-center justify-center  mx-auto lg:mx-0 gap-3 lg:gap-0">
           <p class="w-max font-light lg:mb-1">A development of:</p>
           <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669131998/Advisors/group-logo-01_emyrow.svg" alt="" class="h-3 opacity-80">
       </a>
