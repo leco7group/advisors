@@ -1,22 +1,29 @@
 <template>
   <div>
     <Navbar></Navbar>
-    <div class="grid gridd h-screen w-full mt-5">
     <IntroHome></IntroHome>
+    <About></About>
+    <Process></Process>
+    <Faq></Faq>
     <Footer></Footer>
-  </div>
   </div>
 </template>
 
 <script>
 import Navbar from '@/components/Home/Navbar.vue';
 import IntroHome from '@/components/Home/IntroHome.vue';
+import About from '@/components/Home/About.vue';
+import Process from '@/components/Home/Process.vue';
+import Faq from '@/components/Home/Faq.vue';
 import Footer from '@/components/Home/Footer.vue';
 export default {
 components:{
   IntroHome,
   Footer,
-  Navbar
+  Navbar,
+  About,
+  Process,
+  Faq
 }
 }
 </script>

@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="mt-10 pt-5">
     <div class="w-full relative bottom-0">
       <svg class="waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
       viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
@@ -28,7 +28,7 @@
 
       <a href="#" target="_blank" class="flex lg:flex-col lg:items-end items-center justify-center  mx-auto lg:mx-0 gap-3 lg:gap-0">
           <p class="w-max font-light lg:mb-1">A development of:</p>
-          <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669131998/Advisors/group-logo-01_emyrow.svg" alt="" class="h-3 opacity-80">
+          <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669131998/Advisors/group-logo-01_emyrow.svg" alt="" class="lg:h-4 h-3 opacity-80">
       </a>
     </div>
   </div>
