@@ -11,13 +11,13 @@
             :transition="1000"
         >
             <Slide class="text-text hover:text-primario cursor-pointer" v-for="question in this.questions" :key="question.id">
-                <p class="carousel__slide" @click="slideTo(question.id - 1)">{{ question.tittle }}</p>
+                <p class="carousel__slide" @click="slideTo(question.id -1)">{{ question.tittle }}</p>
             </Slide>     
         </Carousel>
 
-        <Carousel @mouseover="hoverTime" @mouseout="outTime" class="w-full" id="gallery" :items-to-show="1" :wrap-around="true" :transition="1000"  :breakpoints="this.breakpoints2" v-model="currentSlide" :autoplay="this.time">
+        <Carousel @mouseover="hoverTime" @mouseout="outTime" class="w-full" id="gallery" :items-to-show="1" :wrap-around="true" :transition="1000"  :breakpoints="this.breakpoints2" @change="log(this.currentSlide)" v-model="currentSlide" :autoplay="this.time">
             <Slide v-for="question in this.questions" :key="question.id" class="decoration text-text">
-                <div class="flex flex-col items-start w-full lg:pr-10 lg:pl-0 px-5 rounded-xl">
+                <div  class="flex flex-col items-start w-full lg:pr-10 lg:pl-0 px-5 rounded-xl cursor-pointer">
                     <img :src="question.img" alt="" class="h-60 rounded-xl object-cover w-full ">
                     <div class="mt-10 px-4 py-2 rounded-full bg-primario bg-opacity-20">
                         <p class="text-primario text-sm font-light">{{question.action}}</p>
@@ -35,6 +35,7 @@
     </div>
 </template>
 <script>
+import { supabase } from '../../supabase/init'
 import { Carousel, Slide, Navigation  } from 'vue3-carousel'
 export default {
     name: 'Gallery',
@@ -46,8 +47,8 @@ export default {
     data() {
         return {
             currentSlide: 0,
-            questions:[
-                {
+            questions: [
+                /* {
                     id: 1,
                     tittle: "Malta Work Visa and Permit",
                     text:"Malta is a small but very exciting and modern country. So if you want to work in Malta to experience what Malta has to offer, you must know how the application process for a Maltese work visa goes and which criteria you need to meet. ",
@@ -57,7 +58,7 @@ export default {
                 },
                 {
                     id: 2,
-                    tittle: "Malta Work Visa and Permit",
+                    tittle: "2Malta Work Visa and Permit",
                     text:"Malta is a small but very exciting and modern country. So if you want to work in Malta to experience what Malta has to offer, you must know how the application process for a Maltese work visa goes and which criteria you need to meet. ",
                     moreText: "You may be asked to submit additional documents, depending on your specific situation or the country from which you apply. Make sure you submit all the required documents with the application form. Any missing document can result in your visa rejection.",
                     action: "Visa Student",
@@ -65,12 +66,12 @@ export default {
                 },
                 {
                     id: 3,
-                    tittle: "Malta Work Visa and Permit",
+                    tittle: "3Malta Work Visa and Permit",
                     text:"Malta is a small but very exciting and modern country. So if you want to work in Malta to experience what Malta has to offer, you must know how the application process for a Maltese work visa goes and which criteria you need to meet. ",
                     moreText: "You may be asked to submit additional documents, depending on your specific situation or the country from which you apply. Make sure you submit all the required documents with the application form. Any missing document can result in your visa rejection.",
                     action: "Work Permit",
                     img: "https://res.cloudinary.com/dyv3z8tnm/image/upload/v1670683497/Advisors/wepik-photo-mode-20221110-15439_1_hrfbqc.png"
-                },
+                } */
             ],
             breakpoints: {
             // 700px and up
@@ -99,9 +100,14 @@ export default {
             time: 3000
         }
     },
+
+    async created() {
+        await this.getQuestions()
+    },
+
     methods: {
-        slideTo(val) {
-        this.currentSlide = val
+        slideTo(current) {
+            this.currentSlide = current
         },
 
         hoverTime(){
@@ -109,7 +115,14 @@ export default {
         },
         outTime(){
             this.time = 3000
-        }
+        },
+
+        async getQuestions(){
+            const { data, error } = await supabase
+            .from('questions_web')
+            .select()
+            this.questions = data
+        },
     }
 }
 </script>
