@@ -18,7 +18,6 @@
         <div :class="this.hamburger" class="fixed shadow-xl top-0 right-0 h-screen transform transition-all duration-300 flex-col lg:hidden bg-white rounded-l-3xl z-50">
             <div  :class="this.text" class="flex top-0 items-center justify-between">
                 <i @click="collapse"  class="fi fi-rr-arrow-right justify-center items-center pr-5 py-10 text-2xl text-primario"></i>
-
             </div>
             <div :class="this.text" class="flex-col gap-5 text-text">
                 <div class="transform focus:-translate-y-1 focus:underline focus:text-primario transition-all duration-500"><i class="fi fi-rr-home"></i><p>Home</p></div>

@@ -5,7 +5,7 @@
             <p class="lg:text-9xl text-7xl lg:text-left text-center mx-auto lg:mx-0 font-bold">In Malta</p>
             <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669142761/Advisors/mancha-01_lfdicq.svg" alt="mancha" class=" h-10 mr-auto leading-none -mt-1">
             <p class="mt-5 leading-5 text-lg font-light text-center lg:text-left">At LECO7 advisors, we provide you with all the advice you need <br class="hidden lg:block"> to achieve every goal you set for your stay in Malta.</p>
-            <button class="bg-primario text-white rounded-full text-lg font-light px-10 mt-5 py-3 mx-auto lg:mx-0">Get started</button>
+            <router-link :to="{hash:'#process'}" class="bg-primario text-white rounded-full text-lg font-light px-10 mt-5 py-3 mx-auto lg:mx-0">Get started</router-link>
         </div>
         <div class="flex justify-center items-center lg:order-2 order-1">
             <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669144672/Advisors/group-logo-01-01_1_1_1_xo2a1l.png" alt="phone" class="hh">

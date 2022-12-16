@@ -21,7 +21,7 @@
                     <p class="text-4xl font-bold leading-none">That is the way to the target</p>
                     <p class="font-light mt-3">Try a variety of benefits when using our services.</p>
                 </div>
-            <div class="">
+            <div>
                 <Carousel class="cursor-pointer select-none" :autoplay="4000" :wrap-around="true">
                     <Slide v-for="step in this.steps" :key="step.step">
                     <div class="flex items-center gap-8">
@@ -67,7 +67,7 @@ export default {
                 }
             ]
         }
-    },
+    }
 }
 </script>
 <style scoped>
