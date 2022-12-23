@@ -65,7 +65,7 @@
                 </div>
                 <div class="pt-10 px-10">
                     <div class="grid griddd items-center">
-                        <h2 class="text-text text-2xl font-bold">{{this.currentQuestion.tittle}}</h2>
+                        <h2 class="text-text text-2xl font-bold">{{this.currentQuestion.title}}</h2>
                         <button class=" px-5 py-3 w-max bg-primario transform transition-all duration-300 text-white rounded-full">Get started now</button>
                     </div>
                     
