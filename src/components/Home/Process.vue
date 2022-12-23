@@ -4,31 +4,45 @@
             :wrap-around="true"
             :breakpoints="this.breakpoints"
             v-model="this.currentSlide"
-            ref="carousel"
             class="mb-10 w-11/12 mx-auto text-text font-light"
             :transition="1000"
-            :autoplay="this.time"
         >
-            <Slide class="text-text hover:text-primario cursor-pointer" v-for="question in this.questions" :key="question.id">
-                <p class="carousel__slide" @click="slideTo(question.id -1)">{{ question.tittle }}</p>
+            <Slide class="text-text hover:text-primario cursor-pointer" v-for="pro in this.process" :key="pro.id">
+                <p class="carousel__slide" @click="slideTo(pro.id-1)">{{ pro.title }}</p>
             </Slide>     
         </Carousel>
 
-        <Carousel @mouseover="hoverTime" @mouseout="outTime" class="w-full" id="gallery" :wrap-around="true" :transition="1000"  :breakpoints="this.breakpoints2" @change="log(this.currentSlide)" v-model="this.currentSlide">
-            <Slide v-for="question in this.questions" :key="question.id" class="decoration text-text">
-                <div @click="slideTo(question.id -1)"  class="flex flex-col items-start w-full lg:pr-10 lg:pl-0 px-5 rounded-xl cursor-pointer">
-                    <img :src="question.img" alt="" class="h-60 rounded-xl object-cover w-full ">
+        <Carousel class="w-full"  :wrap-around="true" :transition="1000"  :breakpoints="this.breakpoints2" :pauseAutoplayOnHover="true" v-model="this.currentSlideQuestion" :autoplay="5000">
+            <Slide v-for="question in this.info" :key="question.id" class="decoration text-text">
+                <div v-if="this.active"  class="flex flex-col items-start w-full lg:pr-10 lg:pl-0 px-5 rounded-xl cursor-pointer">
+                    <img @click="slideGo(question.id)" :src="question.img" alt="" class="h-60 rounded-xl object-cover w-full ">
                     <div class="mt-10 px-4 py-2 rounded-full bg-primario bg-opacity-20">
                         <p class="text-primario text-sm font-light">{{question.action}}</p>
                     </div>
                     <div class="mt-5 flex flex-col items-start">
-                        <p class="text-3xl font-bold one ">{{question.tittle}}</p>
+                        <p class="text-3xl font-bold one ">{{question.title}}</p>
                         <p class="text-left text-text font-light text-base mt-2 three">{{question.text}}</p>
                     </div>
                     <button @click="modalInfo(question.id)" class="bg-primario rounded-full px-5 py-3 text-white text-base mt-10 transition-all duration-300 transform hover:scale-105 hover:translate-x-1 hover:-translate-y-1">
                         Learn more
                     </button>
                 </div>
+
+            <div v-else class="flex flex-col items-start w-full lg:pr-10 lg:pl-0 px-5 rounded-xl cursor-pointer animate-pulse">
+                <div class="h-60 rounded-xl object-cover w-full bg-gray-500 bg-opacity-20"></div>
+                <div class="mt-10 px-4 py-2 rounded-full bg-gray-500 bg-opacity-20">
+                    <p class="text-primario text-sm font-light text-opacity-0 ">Work permit</p>
+                </div>
+                <div class="mt-5 flex flex-col items-start w-full">
+                    <div class="bg-gray-500 bg-opacity-20 rounded-full h-4 w-full my-2"></div>
+                    <div class="bg-gray-500 bg-opacity-20 rounded-full h-4 w-full my-2"></div>
+                    <div class="bg-gray-500 bg-opacity-20 rounded-full h-4 w-full my-2"></div>
+                    <div class="bg-gray-500 bg-opacity-20 rounded-full h-4 w-full my-2"></div>
+                </div>
+                <button class="bg-gray-500 bg-opacity-20 rounded-full px-5 py-3 mt-10 ">
+                    <p class="text-opacity-0 text-gray-50">Learn more</p>
+                </button>
+            </div>
             </Slide>
         </Carousel>
 
@@ -77,7 +91,7 @@
     </div>
 </template>
 <script>
-
+import { supabase } from '../../supabase/init'
 import { Carousel, Slide, Navigation  } from 'vue3-carousel'
 export default {
     name: 'Gallery',
@@ -89,32 +103,7 @@ export default {
     data() {
         return {
             currentSlide: 0,
-            questions: [
-                {
-                    id: 1,
-                    tittle: "Malta Work Visa and Permit",
-                    text:"Malta is a small but very exciting and modern country. So if you want to work in Malta to experience what Malta has to offer, you must know how the application process for a Maltese work visa goes and which criteria you need to meet. ",
-                    moreText: "You may be asked to submit additional documents, depending on your specific situation or the country from which you apply. Make sure you submit all the required documents with the application form. Any missing document can result in your visa rejection.",
-                    action: "Work Permit",
-                    img: "https://res.cloudinary.com/dyv3z8tnm/image/upload/v1670683497/Advisors/wepik-photo-mode-20221110-15439_1_hrfbqc.png"
-                },
-                {
-                    id: 2,
-                    tittle: "Malta Work Visa Requirements",
-                    text:"You may be asked to submit additional documents, depending on your specific situation or the country from which you apply. Make sure you submit all the required documents with the application form. Any missing document can result in your visa rejection.",
-                    moreText: "You may be asked to submit additional documents, depending on your specific situation or the country from which you apply. Make sure you submit all the required documents with the application form. Any missing document can result in your visa rejection.",
-                    action: "Visa Student",
-                    img: "https://img.freepik.com/free-photo/closeup-hands-passing-contract-unrecognizable-businessman_1098-19612.jpg?w=2000&t=st=1670941602~exp=1670942202~hmac=de92809e4ac7471ce5e858e0c18a1693813ce877abbeb1bc058e1ddba4d13a0a"
-                },
-                {
-                    id: 3,
-                    tittle: "Key Employee Initiative",
-                    text:"Relevant skills and work experience for the qualified job. An annual salary of at least €30,000. Document copies of your previous work experiences over the last three years.",
-                    moreText: "Relevant skills and work experience for the qualified job. An annual salary of at least €30,000. Document copies of your previous work experiences over the last three years.",
-                    action: "Work Permit",
-                    img: "https://img.freepik.com/free-photo/closeup-business-woman-making-notes-document_1262-16051.jpg?w=2000&t=st=1670941962~exp=1670942562~hmac=80525f94e2dfbb7e67ac6c5d1ebe0e3ed431e55e80193438fc5f74c736c02819"
-                }
-            ],
+            currentSlideQuestion: 0,
             breakpoints: {
             // 700px and up
             0: {
@@ -123,7 +112,7 @@ export default {
             },
             // 1024 and up
             1024: {
-                itemsToShow: 4,
+                itemsToShow: 3,
                 snapAlign: 'center',
             },
             },
@@ -139,33 +128,64 @@ export default {
                 snapAlign: 'start',
             },
             },
+            process:[],
+            active: false,
             like: true,
             time: 3000,
             openModal: "hidden",
-            currentQuestion: {}
+            currentQuestion: {},
+            info: [],
         }
+    },
+
+    async created() {
+        const initial = 1
+        await this.getTitle()
+        await this.getInfo(initial)
+        
     },
 
     methods: {
         slideTo(current) {
             this.currentSlide = current
+            this.id = this.currentSlide+1
+            this.getInfo(this.id)
         },
 
-        hoverTime(){
-            this.time = 0
-        },
-        outTime(){
-            this.time = 3000
+        slideGo(current) {
+            this.currentSlideQuestion = current + 1
+            console.log(current, this.currentSlideQuestion);
         },
 
         modalInfo(id){
             this.openModal = "fixed"
-            this.questions.forEach(question => {
+            this.info.forEach(question => {
                 if(question.id === id){
                     this.currentQuestion = question
                     console.log(this.currentQuestion);
                 }
             });
+        },
+        async getTitle(){
+            const { data, error } = await supabase
+            .from('processes')
+            .select()
+            this.process = data
+        },
+
+        async getInfo(id){
+            const { data, error } = await supabase
+            .from('questions_web')
+            .select()
+            .eq('process_id', id)
+            if(data.length != 0){
+                this.active = true
+                this.info = data
+            } else {
+                this.active = false
+            }
+            
+            console.log(id, data, error);
         }
     }
 }

@@ -1,22 +1,7 @@
 <template>
-    <div id="about" class="max-w-7xl p-5 mt-10 mx-auto w-full">
-        <div class="flex w-full justify-between text-text mx-auto px-10">
-            <div class="flex items-center gap-3">
-                <p class="text-7xl font-bold">10</p>
-                <p class="font-light text-lg">Years of experience</p>
-            </div>
-            <div class=" border-r-2 rounded-full border-primario mx-10"></div>
-            <div class="flex items-center gap-3">
-                <p class="text-7xl font-bold">1K+</p>
-                <p class="font-light text-lg">Persons advised</p>
-            </div>
-            <div class=" border-r-2 rounded-full border-primario mx-10"></div>
-            <div class="flex items-center gap-3">
-                <p class="text-7xl font-bold">100%</p>
-                <p class="font-light text-lg">Efficiency in the processes carried out</p>
-            </div>
-        </div>
-        <div class="grid grid-cols-2 items-center gap-5 py-5 mt-10">
+    <div id="about" class="max-w-7xl p-5 mt-5 mx-auto w-full">
+        
+        <div class="grid grid-cols-2 items-center gap-5 pb-5 pt-0">
             <div class="text-text">
                     <p class="text-4xl font-bold leading-none">That is the way to the target</p>
                     <p class="font-light mt-3">Try a variety of benefits when using our services.</p>

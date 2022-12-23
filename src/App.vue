@@ -9,9 +9,6 @@
 <style>
 
 
-
-
-
 html{
     scroll-behavior: smooth;
   }
