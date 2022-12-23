@@ -74,6 +74,12 @@ export default {
         grid-template-columns: 45% 55%;
     }
 
+    @media (max-width: 1024px) {
+        .gridd{
+                grid-template-columns: 1fr;
+            }
+    }
+
     #ask{
         box-shadow: none;
     }

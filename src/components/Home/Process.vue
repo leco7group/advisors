@@ -1,16 +1,21 @@
 <template>
     <div id="process" class="max-w-7xl mx-auto py-5 mt-5 ">
+        <div @click="this.currentSlide = this.currentSlide + 1" class="text-primario bg-primario bg-opacity-20 py-1.5 px-2 rounded-lg mb-5 lg:hidden w-11/12 mx-auto flex items-center justify-evenly">
+                <p>Check out more options</p>
+                <i class="fi fi-rr-arrow-right flex justify-center items-center"></i>
+        </div>
         <Carousel
             :wrap-around="true"
             :breakpoints="this.breakpoints"
             v-model="this.currentSlide"
-            class="mb-10 w-11/12 mx-auto text-text font-light"
+            class="lg:mb-10 mb-5 w-11/12 mx-auto text-text font-light"
             :transition="1000"
         >
             <Slide class="text-text hover:text-primario cursor-pointer" v-for="pro in this.process" :key="pro.id">
                 <p class="carousel__slide" @click="slideTo(pro.id-1)">{{ pro.title }}</p>
-            </Slide>     
+            </Slide>
         </Carousel>
+        
 
         <Carousel class="w-full"  :wrap-around="true" :transition="1000"  :breakpoints="this.breakpoints2" :pauseAutoplayOnHover="true" v-model="this.currentSlideQuestion" :autoplay="5000">
             <Slide v-for="question in this.info" :key="question.id" class="decoration text-text">
@@ -20,7 +25,7 @@
                         <p class="text-primario text-sm font-light">{{question.action}}</p>
                     </div>
                     <div class="mt-5 flex flex-col items-start">
-                        <p class="text-3xl font-bold one ">{{question.title}}</p>
+                        <p class="text-3xl font-bold one text-left">{{question.title}}</p>
                         <p class="text-left text-text font-light text-base mt-2 three">{{question.text}}</p>
                     </div>
                     <button @click="modalInfo(question.id)" class="bg-primario rounded-full px-5 py-3 text-white text-base mt-10 transition-all duration-300 transform hover:scale-105 hover:translate-x-1 hover:-translate-y-1">
@@ -107,8 +112,8 @@ export default {
             breakpoints: {
             // 700px and up
             0: {
-                itemsToShow: 1.4,
-                snapAlign: 'start',
+                itemsToShow: 1,
+                snapAlign: 'center',
             },
             // 1024 and up
             1024: {
