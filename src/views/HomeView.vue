@@ -1,5 +1,12 @@
 <template>
   <div>
+    <router-link :to="{hash:'#process'}"  class=" fixed top-24 left-0 px-8 shadow-lg py-3 bg-green-100 text-green-500 z-50 flex items-center rounded-r-full">
+      <i class="fi fi-rr-world flex items-center justify-center text-2xl mr-3"></i>
+      <div class="">
+        <p class="text-lg leading-none underline">Start your process now</p>
+        <p class="text-sm font-light">Don't wait any longer for your dreams</p>
+      </div>
+      </router-link>
     <Navbar></Navbar>
     <IntroHome></IntroHome>
     <About></About>
