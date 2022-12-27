@@ -20,7 +20,7 @@
         <Carousel class="w-full"  :wrap-around="true" :transition="1000"  :breakpoints="this.breakpoints2" :pauseAutoplayOnHover="true" v-model="this.currentSlideQuestion" :autoplay="5000">
             <Slide v-for="question in this.info" :key="question.id" class="decoration text-text">
                 <div v-if="this.active"  class="flex flex-col items-start w-full lg:pr-10 lg:pl-0 px-5 rounded-xl cursor-pointer">
-                    <img @click="slideGo(question.id)" :src="question.img" alt="" class="h-60 rounded-xl object-cover w-full ">
+                    <img :src="question.img" alt="" class="h-60 rounded-xl object-cover w-full ">
                     <div class="mt-10 px-4 py-2 rounded-full bg-primario bg-opacity-20">
                         <p class="text-primario text-sm font-light">{{question.action}}</p>
                     </div>
@@ -50,7 +50,7 @@
             </div>
             </Slide>
             <template #addons>
-                <Navigation class="hidden lg:flex"  />
+                <Navigation class="hidden lg:flex text-primario shadow-lg rounded-full bg-white "  />
             </template>
         </Carousel>
 
@@ -158,11 +158,6 @@ export default {
             this.currentSlide = current
             this.id = this.currentSlide+1
             this.getInfo(this.id)
-        },
-
-        slideGo(current) {
-            this.currentSlideQuestion = current + 1
-            console.log(current, this.currentSlideQuestion);
         },
 
         modalInfo(id){

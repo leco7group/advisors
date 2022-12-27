@@ -5,7 +5,8 @@ module.exports = {
     extend: {},
     colors: {
       'text' : '#424242',
-      'primario' : '#0D6FFD'
+      'primario' : '#0D6FFD',
+      'naranja' : '#FC7619'
     },
   },
   variants: {
