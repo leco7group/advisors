@@ -6,7 +6,7 @@
             <button class="transform focus:-translate-y-1 focus:underline focus:text-primario transition-all duration-500">Services</button>
             <router-link :to="{hash:'#process'}"  class="transform focus:-translate-y-1 focus:underline focus:text-primario transition-all duration-500">Processes</router-link>
             <button class="transform focus:-translate-y-1 focus:underline focus:text-primario transition-all duration-500">Jobs</button>
-            <button class="transform focus:-translate-y-1 focus:underline focus:text-primario transition-all duration-500">Events (WS)</button>
+            <button class="transform focus:-translate-y-1 focus:underline focus:text-primario transition-all duration-500">Events</button>
             <button class="transform focus:-translate-y-1 focus:underline focus:text-primario transition-all duration-500">Contact</button>
         </div>
         <div class="lg:flex gap-2 hidden">

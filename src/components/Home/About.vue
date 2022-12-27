@@ -25,6 +25,7 @@
     </div>
 </template>
 <script>
+import { supabase } from '../../supabase/init'
 import 'vue3-carousel/dist/carousel.css'
 import { Carousel, Slide} from 'vue3-carousel'
 export default {
@@ -35,25 +36,22 @@ export default {
 },
     data() {
         return {
-            steps: [
-                {
-                    step: 1,
-                    icon: "https://res.cloudinary.com/dyv3z8tnm/image/upload/v1670582488/Advisors/raise-hand_uxanhq.png",
-                    tittle: "We will ask you what is your intention"
-                },
-                {
-                    step: 2,
-                    icon: "https://res.cloudinary.com/dyv3z8tnm/image/upload/v1670582811/Advisors/registered_gmswxd.png",
-                    tittle: "Your registration gives you access to the future"
-                },
-                {
-                    step: 3,
-                    icon: "https://res.cloudinary.com/dyv3z8tnm/image/upload/v1670582908/Advisors/subscription_pa5hhy.png",
-                    tittle: "Select the consultancy according to your needs"
-                }
-            ]
+            steps: []
         }
-    }
+    },
+
+    created() {
+        this.getSteps()
+    },
+
+    methods: {
+        async getSteps(){
+            const { data, error } = await supabase
+            .from('steps_web')
+            .select()
+            this.steps = data
+        }
+    },
 }
 </script>
 <style scoped>

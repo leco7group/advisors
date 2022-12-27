@@ -49,6 +49,9 @@
                 </button>
             </div>
             </Slide>
+            <template #addons>
+                <Navigation class="hidden lg:flex"  />
+            </template>
         </Carousel>
 
         <div :class="this.openModal" class=" h-screen w-screen bg-gray-300 bg-opacity-50 top-0 left-0 z-50 p-5 flex justify-center items-center">
