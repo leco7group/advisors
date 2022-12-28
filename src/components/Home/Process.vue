@@ -187,8 +187,6 @@ export default {
             } else {
                 this.active = false
             }
-            
-            console.log(id, data, error);
         }
     }
 }

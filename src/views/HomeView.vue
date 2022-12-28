@@ -1,6 +1,6 @@
 <template>
   <div>
-    <router-link :to="{hash:'#process'}"  class=" lg:fixed bottom-0  left-0 lg:px-8 px-2 shadow-lg py-3 bg-naranja bg-opacity-50 text-text z-50 flex items-center justify-evenly lg:rounded-tr-3xl">
+    <router-link :to="{hash:'#process'}"  class=" lg:fixed bottom-0  left-0 lg:px-8 px-2 shadow-lg py-3 bg-orange-300 text-text z-50 flex items-center justify-evenly lg:rounded-tr-3xl">
       <i class="fi fi-rr-world flex items-center justify-center text-2xl mr-3"></i>
       <div class="flex flex-col text-center lg:text-left">
         <p class=" text-lg leading-none underline">Start your process</p>
@@ -13,6 +13,7 @@
     <Process></Process>
     <Faq></Faq>
     <Footer></Footer>
+    
   </div>
 </template>
 
