@@ -6,8 +6,8 @@
             <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1669142761/Advisors/mancha-01_lfdicq.svg" alt="mancha" class=" h-10 mr-auto leading-none -mt-1">
             <p class="mt-5 leading-5 text-lg font-light text-center lg:text-left w-10/12">Leco7 advisor, requirements and application process for visas and permits.</p>
             <router-link :to="{hash:'#process'}" class="bg-primario text-white rounded-full text-lg font-light px-10 mt-5 py-3 mx-auto lg:mx-0">Get started</router-link>
-       <!--      <input type="date" v-model="this.date" @change="fecha">
-            <input type="time" v-model="this.time" @change="fecha"> -->
+            <input type="date" v-model="this.date" @change="fecha">
+            <input type="time" v-model="this.time" @change="fecha">
         </div>
         <div class="flex justify-center items-center lg:order-2 order-1 relative">
             <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1672237061/Advisors/portada-copia-_1__speuk6.webp" alt="phone" class="hh z-10">
