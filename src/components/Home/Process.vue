@@ -237,7 +237,7 @@ export default {
 
 .one{
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 1;
     display: -webkit-box;
     overflow: hidden;
 }</style>

@@ -8,6 +8,14 @@
 
 <style>
 
+input:focus{
+  box-shadow: none !important;
+}
+
+select:focus{
+  box-shadow: none !important;
+}
+
 
 html{
     scroll-behavior: smooth;
