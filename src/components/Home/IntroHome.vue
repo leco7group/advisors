@@ -139,10 +139,10 @@ export default {
                 type: 'button'
             },
             text: "Please select date and time of appointment",
-            step: false,
+            step: true,
             date: "Select the date of your interest",
             time: "Select the time of your interest",
-            modal: true,
+            modal: false,
             settings: {
                 start: '08:00',
                 step: '00:30',
