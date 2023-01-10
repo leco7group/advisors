@@ -33,14 +33,14 @@
 
                         <router-link :to="{ hash: '#process' }" @click="resetStatus"
                             class="flex flex-col justify-center items-center bg-gray-100 rounded-lg gap-5 p-10 transform transition-all duration-500 hover:bg-primario hover:bg-opacity-5 hover:scale-105 hover:shadow-xl">
-                            <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1672792244/Advisors/entrevista-online_tan55l.webp"
+                            <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1673369316/Advisors/ordenador-personal_tqpony.webp"
                                 alt="Image" class="h-20">
                             <p class="text-primario font-light text-lg">Get started online</p>
                         </router-link>
 
                         <div class="flex flex-col justify-center items-center bg-gray-100 rounded-lg gap-5 p-10 transform transition-all duration-500 hover:bg-primario hover:bg-opacity-5 hover:scale-105 hover:shadow-xl cursor-pointer"
                             @click="this.step = false">
-                            <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1672791777/Advisors/calendario_q0qwwe.webp"
+                            <img src="https://res.cloudinary.com/dyv3z8tnm/image/upload/v1673369325/Advisors/calendario-_1__kwz5lh.webp"
                                 alt="Image" class="h-20">
                             <p class="text-primario text-lg text-center leading-none font-light">Schedule an appointment
                             </p>
