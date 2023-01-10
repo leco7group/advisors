@@ -79,13 +79,6 @@
                     
                     <p class="mt-5 font-light">{{this.currentQuestion.text}}</p>
                     <p class="mt-5 font-light">{{this.currentQuestion.moreText}}</p>
-                    <p class="mt-5 font-light">{{this.currentQuestion.moreText}}</p>
-                    <p class="mt-5 font-light">{{this.currentQuestion.moreText}}</p>
-                    <p class="mt-5 font-light">{{this.currentQuestion.moreText}}</p>
-                    <p class="mt-5 font-light">{{this.currentQuestion.moreText}}</p>
-                    <p class="mt-5 font-light">{{this.currentQuestion.moreText}}</p>
-                    <p class="mt-5 font-light">{{this.currentQuestion.moreText}}</p>
-                    <p class="mt-5 font-light">{{this.currentQuestion.moreText}}</p>
                     <div class="my-10 flex gap-5 items-center">
                         <button class="px-5 py-3 w-full bg-white transform transition-all duration-300 text-primario rounded-full border border-primario hover:bg-primario hover:shadow-lg hover:text-white">Get started now</button>
                         <div class="p-3 bg-white shadow-lg rounded-full text-red-500">
