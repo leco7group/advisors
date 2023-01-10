@@ -189,7 +189,7 @@
                             <p class="text-text max-w-md text-center font-light lg:text-lg leading-tight px-5">This date and time selection is no longer available, <span class="font-medium"> select another one.</span></p>
                     </div>
 
-                    <div v-else class="flex flex-col items-center">
+                    <div v-else-if="this.alertStatus === 'error' " class="flex flex-col items-center">
                         <div class="flex items-center mb-2 lg:mb-5">
                             <p class="lg:text-9xl text-6xl text-red-400 font-semibold">Oush!</p>
                             <div class="text-red-400 lg:text-4xl text-xl rounded-full bg-red-100 lg:p-5 p-3 animate-bounce">
@@ -276,7 +276,7 @@ export default {
     methods: {
 
         validateInputs(){
-            if(this.selectDate != "" && this.time && this.sendBooking.email != "" && this.sendBooking.code_contact != "" && this.sendBooking.contact != "" && this.sendBooking.names !="" && this.sendBooking.last_names != "" && this.time != "Select the time of your interest" ){
+            if(this.selectDate != "" && this.time && this.sendBooking.email != "" && this.sendBooking.code_contact != "" && this.sendBooking.contact != "" && this.sendBooking.names !="" && this.sendBooking.last_names != "" && this.time != "Select the time of your interest" && this.text != "Oops, this date and time selection is not available, select other option"  && this.text != "Please give us a moment, we are validating"){
                 this.inputsReadys = true
             } else {
                 this.inputsReadys = false
@@ -294,7 +294,7 @@ export default {
                     password: `${this.sendBooking.contact}`
                 })
                 let id = data.user.id
-                console.log(id);
+                this.alertStatus = "loading" 
                 this.userId = id
                 await this.logOut()
                 await this.registerUser(id)
@@ -337,7 +337,17 @@ export default {
                     setTimeout(() => {
                         this.alertStatus = "send"
                         setTimeout(() => {
+                            this.date = new Date(),
+                            this.selectDay()
+                            this.icon = "fi-rr-exclamation"
+                            this.style = "text-primario"
+                            this.text= "Please select date and time of appointment",
+                            this.date ="Select the date of your interest"
+                            this.time = "Select the time of your interest"
+                            this.step = true
                             this.status = false
+                            this.clean()
+                            this.modal = false
                         }, 4000);
                     }, 1500);
                     
@@ -345,11 +355,15 @@ export default {
                 if(error){
                     setTimeout(() => {
                         this.alertStatus = "otherDate"
+                        this.icon = "fi-rr-exclamation"
+                        this.style = "text-primario"
+                        this.text= "Please select date and time of appointment",
+                        this.time = "Select the time of your interest"
+                        this.validateInputs()
                         setTimeout(() => {
                             this.status = false
                         }, 4000);
                     }, 1500);
-                    console.log(error);
                 }
             }
             } else {
@@ -388,12 +402,14 @@ export default {
                             this.icon = "fi-rr-cross-circle"
                             this.text = "Oops, this date and time selection is not available, select other option"
                             this.style = "text-red-400"
+                            this.validateInputs()
                         }, 1500);
                     } else {
                         setTimeout(() => {
                             this.icon = "fi-rr-heart"
                             this.text = "Yes, we have availability for the selection you made."
                             this.style = "text-green-400"
+                            this.validateInputs()
                         }, 1500);
                     }
                 } catch (error) {
@@ -464,6 +480,7 @@ export default {
         },
 
         clean(){
+            this.alertStatus = ""
             this.inputsReadys = false
             this.userId = ""
             this.disabled = true,
