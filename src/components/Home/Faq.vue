@@ -1,5 +1,5 @@
 <template>
-    <div class="max-w-7xl mx-auto p-5 mt-10 text-text ">
+    <div id="faq" class="max-w-7xl mx-auto p-5 mt-10 text-text ">
         <div class="flex flex-col items-center">
             <label for="ask" class="font-extralight text-5xl cursor-pointer">Frequently <span class="font-bold"> askeds questions</span> </label>
             <div class="grid gridd gap-5 w-full max-w-2xl mt-2">
