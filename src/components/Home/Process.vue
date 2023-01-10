@@ -1,5 +1,5 @@
 <template>
-    <div id="process" class="max-w-7xl mx-auto py-5 mt-5 ">
+    <div id="process" class="max-w-7xl mx-auto py-5 lg:mt-5 ">
         <div @click="this.currentSlide = this.currentSlide + 1" class="text-primario bg-primario bg-opacity-20 py-1.5 px-2 rounded-lg mb-5 lg:hidden w-11/12 mx-auto flex items-center justify-evenly">
                 <p>Check out more options</p>
                 <i class="fi fi-rr-arrow-right flex justify-center items-center"></i>

@@ -19,7 +19,7 @@
 
         <div v-if="this.modal"
             class="fixed h-screen w-screen top-0 right-0 bg-primario bg-opacity-80 z-50 flex justify-center items-center p-5 text-text">
-            <div class="bg-white shadow-xl max-w-3xl w-full h-auto max-h-full rounded-2xl overflow-y-auto">
+            <div class="bg-white shadow-xl max-w-3xl w-full h-auto max-h-full rounded-2xl overflow-y-auto relative">
                 <div v-if="this.step" class="flex flex-col justify-center items-center w-full gap-10 p-10 ">
                     <div class="flex justify-between items-center gap-5 w-full text-primario">
                         <p class="font-light lg:text-xl text-center  leading-tight mx-auto">Choose how you want to <span
@@ -89,7 +89,7 @@
                                 <p class="font-light one cursor-pointer">{{ this.time }}</p>
                                 <i v-if="this.time === 'Select the time of your interest'"
                                     class="fi fi-rr-clock-three flex justify-center items-center text-primario"></i>
-                                <i @click=" this.text = 'Please select date and time of appointment', this.icon = 'fi-rr-exclamation', this.style = 'text-yellow-400'  ,this.time = 'Select the time of your interest'" v-else
+                                <i @click="this.text = 'Please select date and time of appointment', this.icon = 'fi-rr-exclamation', this.style = 'text-yellow-400'  ,this.time = 'Select the time of your interest'" v-else
                                     class="fi fi-rr-cross-small flex justify-center items-center text-primario cursor-pointer"></i>
                             </label>
                         </label>
@@ -104,7 +104,7 @@
                     <div class="flex flex-col cursor-pointer relative">
                         <label for="correo" class="font-light text-primario">Email</label>
                         <div class="w-full flex relative">
-                            <input  type="text" id="correo" class="border-b border-primario border-t-0 border-r-0 border-l-0 text-text font-light w-full" placeholder="youremail@email.com" v-model="this.sendBooking.email">
+                            <input  type="text" id="correo" class="border-b border-primario border-t-0 border-r-0 border-l-0 text-text font-light w-full" placeholder="Validate your email" v-model="this.sendBooking.email" @change="validateInputs">
                             <div @click="getUser" v-if="this.validateButton || this.sendBooking.email == '' " class="rounded-full p-2 shadow-lg absolute right-0 text-primario hover:text-white hover:bg-green-400 transition-all duration-300">
                                 <i  class="fi fi-rr-arrow-small-right flex justify-center items-center"></i>
                             </div>
@@ -120,11 +120,11 @@
                     <div class="flex flex-col cursor-pointer">
                         <label for="number" class="font-light text-primario">Contact number</label>
                         <div class="w-full flex ">
-                            <select :disabled="this.disabled"  v-model="this.sendBooking.code_contact" :class="this.classDisabled"  class=" border-b border-primario border-t-0 border-r-0 border-l-0 text-sm font-light one max-w-xs w-full">
+                            <select @change="validateInputs" :disabled="this.disabled"  v-model="this.sendBooking.code_contact" :class="this.classDisabled"  class=" border-b border-primario border-t-0 border-r-0 border-l-0 text-sm font-light one max-w-xs w-full">
                                 <option value="" selected disabled>Country of contact </option>
                                 <option v-for="(code, index) in this.codeContact" :key="index" :value="code.phone_code">{{ code.name }}</option>
                         </select>
-                        <input :disabled="this.disabled" v-model="this.sendBooking.contact" :type="this.typeInput" id="number" :class="this.classDisabled"  class="border-b border-primario border-t-0 border-r-0 border-l-0 font-light" placeholder="999 99 999">
+                        <input @change="validateInputs" :disabled="this.disabled" v-model="this.sendBooking.contact" :type="this.typeInput" id="number" :class="this.classDisabled"  class="border-b border-primario border-t-0 border-r-0 border-l-0 font-light" placeholder="999 99 999">
                         </div>
                     </div>
                 </div>
@@ -134,11 +134,11 @@
                 <div class="grid lg:grid-cols-2 gap-5 text-text">
                     <div class="flex flex-col cursor-pointer">
                         <label for="names" class="font-light text-primario">Names</label>
-                        <input :disabled="this.disabled" v-model="this.sendBooking.names" type="text" id="names" :class="this.classDisabled" class="border-b  border-t-0 border-r-0 border-l-0 text-text font-light" placeholder="Maria Alejandra">
+                        <input @change="validateInputs" :disabled="this.disabled" v-model="this.sendBooking.names" type="text" id="names" :class="this.classDisabled" class="border-b  border-t-0 border-r-0 border-l-0 text-text font-light" placeholder="Maria Alejandra">
                     </div>
                     <div class="flex flex-col cursor-pointer">
                         <label for="last" class="font-light text-primario">Last names</label>
-                        <input :disabled="this.disabled" v-model="this.sendBooking.last_names" type="text" id="last" :class="this.classDisabled"  class="border-b border-primario border-t-0 border-r-0 border-l-0 text-text font-light" placeholder="Manrique R.">
+                        <input @keyup="validateInputs" :disabled="this.disabled" v-model="this.sendBooking.last_names" type="text" id="last" :class="this.classDisabled"  class="border-b border-primario border-t-0 border-r-0 border-l-0 text-text font-light" placeholder="Manrique R.">
                     </div>
                 </div>
 
@@ -148,16 +148,61 @@
                         <p class="font-light text-xs">By scheduling your appointment you agree to the terms, conditions and use of data processing for commercial, internal and study purposes, for further information <a class="underline" href="https://google.com" target="_blank">click here.</a> </p>
                     </div>
                     <div class="w-full flex flex-col gap-3 text-center">
-                        <button @click="sendInfo" class="w-full border border-primario bg-primario text-white py-3 px-2 rounded-lg hover:bg-green-400 hover:border-green-400 transition-all duration-300">Schedule an appointment</button>
-                        <button class="w-full border border-red-500 text-red-500 p-2 rounded-lg text-sm hover:bg-red-500 hover:text-white transition-all duration-500 ">Cancel request</button>
+                        <button v-if="this.inputsReadys === false" class="w-full border border-gray-400 bg-gray-400 text-white py-3 px-2 rounded-lg">Schedule an appointment</button>
+
+                        <button v-else  @click="sendInfo" class="w-full border border-primario bg-primario text-white py-3 px-2 rounded-lg hover:bg-green-400 hover:border-green-400 transition-all duration-300">Schedule an appointment</button>
+
+                        <button @click="clean, this.modal = false, this.sendBooking = {},  this.sendBooking.code_contact = ''  " class="w-full border border-red-500 text-red-500 p-2 rounded-lg text-sm hover:bg-red-500 hover:text-white transition-all duration-500 ">Cancel request</button>
                     </div>
                 </div>
                 </div>
+
+                <div v-if="this.status" class="absolute top-0 left-0 right-0 flex justify-center items-center h-full bg-white bg-opacity-90">
+
+                    <div v-if="this.alertStatus === 'loading' " class="flex flex-col items-center">
+                        <div class="flex items-center mb-2 lg:mb-5">
+                            <p class="lg:text-9xl text-6xl text-primario font-semibold">Wait...</p>
+                            <div class="text-primario lg:text-4xl text-xl rounded-full bg-primario bg-opacity-10 lg:p-5 p-3 animate-spin">
+                            <i class="fi fi-rr-rotate-right flex justify-center"></i>
+                            </div>
+                        </div>
+                            <p class="text-text max-w-md text-center font-light lg:text-lg leading-tight px-5">You have made an appointment with us, we are excited to meet you, <span class="font-medium">see you soon.</span></p>
+                    </div>
+
+                    <div v-else-if="this.alertStatus === 'send'  " class="flex flex-col items-center">
+                        <div class="flex items-center mb-2 lg:mb-5">
+                            <p class="lg:text-9xl text-6xl text-green-400 font-semibold">Yes!</p>
+                            <div class="text-green-400 lg:text-4xl text-xl rounded-full bg-green-100 lg:p-5 p-3 animate-bounce">
+                            <i class="fi fi-rr-social-network flex justify-center"></i>
+                            </div>
+                        </div>
+                            <p class="text-text max-w-md text-center font-light lg:text-lg leading-tight px-5">You have made an appointment with us, we are excited to meet you, <span class="font-medium">see you soon.</span></p>
+                    </div>
+
+                    <div v-else-if="this.alertStatus === 'otherDate'  " class="flex flex-col items-center">
+                        <div class="flex items-center mb-2 lg:mb-5">
+                            <p class="lg:text-9xl text-6xl text-yellow-400 font-semibold">Ups!</p>
+                            <div class="text-yellow-400 lg:text-4xl text-xl rounded-full bg-yellow-100 lg:p-5 p-3 animate-bounce">
+                            <i class="fi fi-rr-exclamation flex justify-center"></i>
+                            </div>
+                        </div>
+                            <p class="text-text max-w-md text-center font-light lg:text-lg leading-tight px-5">This date and time selection is no longer available, <span class="font-medium"> select another one.</span></p>
+                    </div>
+
+                    <div v-else class="flex flex-col items-center">
+                        <div class="flex items-center mb-2 lg:mb-5">
+                            <p class="lg:text-9xl text-6xl text-red-400 font-semibold">Oush!</p>
+                            <div class="text-red-400 lg:text-4xl text-xl rounded-full bg-red-100 lg:p-5 p-3 animate-bounce">
+                            <i class="fi fi-rr-social-network flex justify-center"></i>
+                            </div>
+                        </div>
+                            <p class="text-text max-w-md text-center font-light lg:text-lg leading-tight px-5">No eres tu somos nostros, pero tranqui, lo vamos a solucionar<span class="font-medium">see you soon.</span></p>
+                    </div>
+
+
+                </div>
             </div>
         </div>
-
-
-
     </div>
 </template>
 <script>
@@ -172,6 +217,8 @@ export default {
 
     data() {
         return {
+            alertStatus: "",
+            status: false,
             userId: "",
             typeInput: "number",
             isUser: false,
@@ -194,10 +241,10 @@ export default {
                 type: 'button'
             },
             text: "Please select date and time of appointment",
-            step: false,
+            step: true,
             date: "Select the date of your interest",
             time: "Select the time of your interest",
-            modal: true,
+            modal: false,
             settings: {
                 start: '08:00',
                 step: '00:30',
@@ -214,7 +261,8 @@ export default {
                 contact: "",
                 names: "",
                 last_names: ""
-            }
+            },
+            inputsReadys: false
         }
     },
 
@@ -227,8 +275,18 @@ export default {
 
     methods: {
 
+        validateInputs(){
+            if(this.selectDate != "" && this.time && this.sendBooking.email != "" && this.sendBooking.code_contact != "" && this.sendBooking.contact != "" && this.sendBooking.names !="" && this.sendBooking.last_names != "" && this.time != "Select the time of your interest" ){
+                this.inputsReadys = true
+            } else {
+                this.inputsReadys = false
+            }
+        },
+
         async sendInfo(){
+            this.status = true;
             if(this.isUser){
+                this.alertStatus = "loading" 
                 this.createBooking()
             } else {
                 const { data, error } = await supabase.auth.signUp({
@@ -236,8 +294,16 @@ export default {
                     password: `${this.sendBooking.contact}`
                 })
                 let id = data.user.id
+                console.log(id);
+                this.userId = id
+                await this.logOut()
                 await this.registerUser(id)
             }
+        },
+
+        async logOut(){
+            const { error } = await supabase.auth.signOut()
+            console.log("me desloguie", error);
         },
 
         async registerUser(id){
@@ -252,11 +318,13 @@ export default {
                         contact_number: this.sendBooking.contact,
                         code_contact: this.sendBooking.code_contact
                     })
-                    this.createBooking()
+                    await this.createBooking()
         },
 
-       async createBooking(){
-            const { error } = await supabase
+        async createBooking(){
+            if(this.userId != ""){
+                try {
+                const { error } = await supabase
                 .from('appointments')
                 .insert(
                     { 
@@ -265,6 +333,33 @@ export default {
                         date: this.fecha,
                         time: this.time
                     })
+                    if(error) throw error
+                    setTimeout(() => {
+                        this.alertStatus = "send"
+                        setTimeout(() => {
+                            this.status = false
+                        }, 4000);
+                    }, 1500);
+                    
+            } catch (error) {
+                if(error){
+                    setTimeout(() => {
+                        this.alertStatus = "otherDate"
+                        setTimeout(() => {
+                            this.status = false
+                        }, 4000);
+                    }, 1500);
+                    console.log(error);
+                }
+            }
+            } else {
+                setTimeout(() => {
+                        this.alertStatus = "error"
+                        setTimeout(() => {
+                            this.status = false
+                        }, 4000);
+                    }, 1500);
+            }
         },
 
         selectHour(){
@@ -272,9 +367,11 @@ export default {
             let sendTime = currentTime.replace(/ /g, '').replace(/:/g, '').toLowerCase()
             this.sendData.time = sendTime
             this.checkAvailability()
+            this.validateInputs()
         },
 
         async checkAvailability(){
+            this.validateInputs()
             let search = this.sendData.date + this.sendData.time
             if(this.sendData.date != "" && this.sendData.time != "" ){
                 this.icon = "fi-rr-clock animate-spin"
@@ -341,6 +438,7 @@ export default {
                             names: info.names,
                             last_names: info.last_names
                         }
+                        this.validateInputs()
                     } else{
                         this.isUser = false
                         this.alert = "Please enter the following data"
@@ -366,6 +464,8 @@ export default {
         },
 
         clean(){
+            this.inputsReadys = false
+            this.userId = ""
             this.disabled = true,
             this.classDisabled = "border-gray-500",
             this.validateButton = true
@@ -418,8 +518,8 @@ export default {
 
 input[type=number]::-webkit-inner-spin-button, 
 input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
+    -webkit-appearance: none; 
+    margin: 0; 
 }
 .hh {
     height: 580px;
