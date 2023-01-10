@@ -8,7 +8,7 @@
             :wrap-around="true"
             :breakpoints="this.breakpoints"
             v-model="this.currentSlide"
-            class="lg:mb-10 mb-5 w-11/12 mx-auto text-text font-light"
+            class="lg:mb-10 mb-5 w-11/12 mx-auto text-text font-light bg-primario bg-opacity-10 py-2 rounded-full"
             :transition="1000"
         >
             <Slide class="text-text hover:text-primario cursor-pointer" v-for="pro in this.process" :key="pro.id">
@@ -29,7 +29,7 @@
                         <p class="text-left text-text font-light text-base mt-2 three">{{question.text}}</p>
                     </div>
                     <button @click="modalInfo(question.id)" class="bg-primario rounded-full px-5 py-3 text-white text-base mt-10 transition-all duration-300 transform hover:scale-105 hover:translate-x-1 hover:-translate-y-1">
-                        Learn more
+                        Read more
                     </button>
                 </div>
 
